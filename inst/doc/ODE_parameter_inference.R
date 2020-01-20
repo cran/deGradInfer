@@ -69,7 +69,7 @@ qplot(x=seq(25,1000,25), y=c(agm.result$ll), geom = 'line') +
 #      mismatchParameterValues=matrix(seq(0.01,1,length.out=20),nrow=20,ncol=2))
 
 ## ----eval=FALSE----------------------------------------------------------
-#  agm.result = agm(test.data,test.times,LV_func,numberOfParameters=6,explicit=TRUE)
+#  agm.result = agm(test.data,test.times,deSolve_LV_func,numberOfParameters=6,explicit=TRUE)
 
 ## ---- eval=FALSE---------------------------------------------------------
 #  # Function encoding the Vyshemirsky and Girolami ODE model 1.
@@ -93,7 +93,8 @@ qplot(x=seq(25,1000,25), y=c(agm.result$ll), geom = 'line') +
 #  # Generate data
 #  timeTest = c(0,1,2,4,5,7,10,15,20,30,40,50,60,80,100)
 #  dataTest = ode(c(1,0,1,0,0), timeTest,
-#                 function(t,y,params) list(VG_func(t,matrix(y,1,length(y)),params)), c(0.07,0.6,0.05,0.3,0.017,0.3))
+#                 function(t,y,params) list(VG_func(t,matrix(y,1,length(y)),params)),
+#  				c(0.07,0.6,0.05,0.3,0.017,0.3))
 #  dataTest = dataTest[,2:6] + rnorm(dim(dataTest)[1]*5,0,0.01)
 #  
 #  
@@ -105,5 +106,6 @@ qplot(x=seq(25,1000,25), y=c(agm.result$ll), geom = 'line') +
 #  dataTest[,1] = NA
 #  
 #  # Run adaptive gradient matching
-#  agm.result = agm(data=dataTest,time=timeTest,ode.system=VG_func, observedVariables=2:5, numberOfParameters=6)
+#  agm.result = agm(data=dataTest,time=timeTest,ode.system=VG_func, observedVariables=2:5,
+#  				numberOfParameters=6)
 
